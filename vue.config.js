@@ -1,9 +1,8 @@
+const { configs } = require('@typescript-eslint/eslint-plugin')
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
+
   devServer: {
-    // axios: {
-    //   proxy: true,
-    // },  
     proxy: {
       // '^/api/':{target:''}
       
