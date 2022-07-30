@@ -31,8 +31,9 @@
     }),
     methods:{
       deGet:async  function(){
+        const url = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
         console.log("1")
-        await axios.get('/api/',{adapter: axiosJsonpAdapter,})
+        await axios.get(url,{adapter: axiosJsonpAdapter,})
         .then(res => this.tltdMsg = res.data.Hello)
         console.log("2")
       }
