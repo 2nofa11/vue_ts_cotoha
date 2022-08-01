@@ -70,3 +70,25 @@ export default defineComponent({
     // }
 })
 </script>
+
+<style scoped>
+.card-anim-enter-active{
+    animation: fadeInUp .7s;
+    animation-delay: .1s;
+    opacity: 0;
+}
+
+@keyframes fadeInUp{
+    0%{
+        transform: translateY(60px);
+        opacity: 0;
+    }
+    60%{
+        opacity: .3;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+</style>
