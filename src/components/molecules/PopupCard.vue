@@ -1,11 +1,4 @@
 <template>
-        <v-container fluid>
-            <transition-group name="card-anim" >
-                <div row warp v-for="(item,index) in items" v-bind:key="index">
-                    <NormalCard :item="item"></NormalCard>
-                </div>
-            </transition-group>
-        </v-container>
         <div>
             <v-container>
                 <v-btn color="success" v-on:click="addList">
@@ -13,12 +6,18 @@
                 </v-btn>
             </v-container>
         </div>
-
+        <v-container fluid>
+            <transition-group name="card-anim" >
+                <div row warp v-for="(item,index) in items" v-bind:key="index">
+                    <NormalCard :item="item"></NormalCard>
+                </div>
+            </transition-group>
+        </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import NormalCard from "./NormalCard.vue"
+import NormalCard from "../atoms/NormalCard.vue"
 
 type zelda = {
     title:string,
@@ -40,9 +39,9 @@ export default defineComponent({
     mounted(){
         this.itemMaster = [
             {title:"A",description:"Aの説明Aの説Aの説",color:"green darken-4"},
-            {title:"B",description:"Bの説明",color:"green darken-4"},
-            {title:"C",description:"Cの説明",color:"green darken-4"},
-            {title:"D",description:"Dの説明",color:"green darken-4"},
+            {title:"B",description:"Bの説明",color:"red darken-4"},
+            {title:"C",description:"Cの説明",color:"blue darken-4"},
+            {title:"D",description:"Dの説明",color:"red darken-4"},
             {title:"E",description:"Eの説明",color:"green darken-4"},
         ]
     },
