@@ -56,18 +56,6 @@ export default defineComponent({
         }
     }
 
-
-    // methods:{
-    //     addList(){
-    //         if(this.itemMaster.length > this.itemIndex){
-    //             this.items.push(this.itemMaster[this.itemIndex++])
-    //         }
-    //     },
-    //     cardType(item:zelda){
-    //         console.log(item.title)
-    //         return NormalCard
-    //     }
-    // }
 })
 </script>
 
