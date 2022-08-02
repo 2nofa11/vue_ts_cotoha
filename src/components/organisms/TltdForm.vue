@@ -1,5 +1,7 @@
 <template>
-  <SubmitTltdInfo></SubmitTltdInfo>
+  <SubmitTltdInfo @parentMethod="updateMessage"></SubmitTltdInfo>
+  <!-- GASからのレスポンスが表示されます -->
+  {{cotohaResText}}
   <v-row justify="center" class="ma-5">
     <PopupCard></PopupCard>
   </v-row>
@@ -13,6 +15,16 @@
   export default defineComponent({
     components:{
       SubmitTltdInfo,PopupCard
+    },
+    data(){
+      return{
+        cotohaResText:"Hello" 
+      }
+    },
+    methods:{
+      updateMessage(cotohaResText:string){
+        this.cotohaResText = cotohaResText
+      }
     }
   })
 </script>
