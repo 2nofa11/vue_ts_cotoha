@@ -1,9 +1,7 @@
 <template>
         <div>
             <v-container>
-                <v-btn color="success" v-on:click="addList">
-                    More
-                </v-btn>
+                <RoundButton name="要約" v-on:click="addList"/>
             </v-container>
         </div>
         <v-container fluid>
@@ -18,6 +16,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import NormalCard from "../atoms/NormalCard.vue"
+import RoundButton from "../atoms/RoundButton.vue"
 
 type zelda = {
     title:string,
@@ -27,7 +26,7 @@ type zelda = {
 
 export default defineComponent({
     components:{
-        NormalCard
+        NormalCard,RoundButton
     },
     data(){
         return{
