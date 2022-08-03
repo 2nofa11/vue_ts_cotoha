@@ -25,6 +25,7 @@
       rules:[(v:string) => v.length <= 10 || "1000文字以上は要約ができません"]
 
     }),
+    emits:["parentMethod"],
     methods:{
       deGet:async  function(){
         const url = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
