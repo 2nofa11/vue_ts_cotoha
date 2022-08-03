@@ -1,9 +1,8 @@
 <template>
   <SubmitTltdInfo @parentMethod="updateMessage"></SubmitTltdInfo>
   <!-- GASからのレスポンスが表示されます -->
-  {{cotohaResText}}
   <v-row justify="center" class="ma-5">
-    <PopupCard></PopupCard>
+    <PopupCard :itemsProps="cotohaResItems"></PopupCard>
   </v-row>
 </template>
 
@@ -12,18 +11,32 @@
   import SubmitTltdInfo from "../molecules/SubmitTltdInfo.vue"
   import PopupCard from "../molecules/PopupCard.vue"
 
-  export default defineComponent({
+  type zelda = {
+    title:string,
+    description:string,
+    color:string
+  }
+  
+
+export default defineComponent({
     components:{
       SubmitTltdInfo,PopupCard
     },
     data(){
       return{
-        cotohaResText:"Hello" 
+        cotohaResText:"Hello" ,
+        cotohaResItems:[] as Array<zelda>
       }
     },
     methods:{
       updateMessage(cotohaResText:string){
-        this.cotohaResText = cotohaResText
+        const zeldaIns:zelda ={
+          title : "要約",
+          description : cotohaResText,
+          color : "green darken-4"
+        }
+        this.cotohaResItems.push(zeldaIns)
+
       }
     }
   })
