@@ -1,7 +1,7 @@
 <template>
   <v-app-bar color="white" dark>
     <!-- タイトル -->
-    <v-toolbar-title>TL;DR</v-toolbar-title>
+    <v-toolbar-title>SentimenTweet</v-toolbar-title>
     <!-- テーブルアイコンのボタン -->
     <v-btn icon to="/">
       <v-icon>mdi-file-table-outline</v-icon>

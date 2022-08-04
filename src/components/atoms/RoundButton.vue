@@ -1,7 +1,7 @@
 <template>
   <v-btn
     color="primary"
-    elevation="2"
+    elevation="1"
     rounded
     x-large
   >{{name}}</v-btn>

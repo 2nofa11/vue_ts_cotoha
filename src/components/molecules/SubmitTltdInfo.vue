@@ -3,7 +3,7 @@
     <v-textarea v-model="msg" label="Text" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <RoundButton name="要約" v-on:click="deGet"></RoundButton>
+    <RoundButton name="感情分析" v-on:click="deGet"></RoundButton>
     <!-- <p>{{cotohaResText}}</p> -->
   </v-row>
 </template>
@@ -49,10 +49,10 @@
       RoundButton
     },
     data:() => ({
-      cotohaResText:"World",
+      cotohaResText:"",
       itemColor:"",
-      msg:"要約する文章を入力してください",
-      rules:[(v:string) => v.length <= 10 || "1000文字以上は要約ができません"]
+      msg:"「つぶやく」まえに、その文章の感情を分析してみましょう！",
+      rules:[(v:string) => v.length <= 140 || "140文字以上は呟けませんよ！"]
 
     }),
     emits:["parentMethod"],
