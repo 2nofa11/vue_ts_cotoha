@@ -29,11 +29,11 @@ export default defineComponent({
       }
     },
     methods:{
-      updateMessage(cotohaResText:string,msg:string){
+      updateMessage(cotohaResText:string,msg:string,itemColor:string){
         const zeldaIns:zelda ={
           title : cotohaResText,
           description : msg,
-          color : "green darken-4"
+          color : itemColor
         }
         this.cotohaResItems.push(zeldaIns)
 

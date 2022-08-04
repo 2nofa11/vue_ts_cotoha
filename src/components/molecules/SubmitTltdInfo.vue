@@ -8,19 +8,49 @@
   </v-row>
 </template>
 
+
+
 <script lang="ts">
   import {defineComponent} from "vue"
   import RoundButton from "../atoms/RoundButton.vue"
   import axios from "axios"
+
+  const colorMap = {
+    amber:"amber lighten-4",
+    green:"green lighten-4",
+    blue:"blue lighten-4"
+  } as const
+  const sentimentMap = {
+    Negative:"Negative",
+    Positive:"Positive",
+    Neutral:"Neutral"
+  } as const
+  type sentiment = typeof sentimentMap[keyof typeof sentimentMap]
+
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const axiosJsonpAdapter  = require('axios-jsonp')
 
+  
+  const colorSelector = (sentiment:sentiment) =>{
+    switch (sentiment){
+      case sentimentMap.Negative:
+        return colorMap.blue
+      case sentimentMap.Positive:
+        return colorMap.amber
+      case sentimentMap.Neutral:
+       return colorMap.green
+      default:
+       throw new Error("不正な値です。")
+    }
+  }
+   
   export default defineComponent({
     components:{
       RoundButton
     },
     data:() => ({
       cotohaResText:"World",
+      itemColor:"",
       msg:"要約する文章を入力してください",
       rules:[(v:string) => v.length <= 10 || "1000文字以上は要約ができません"]
 
@@ -33,7 +63,11 @@
         await axios.get(url,{adapter: axiosJsonpAdapter,})
         .then(res => this.cotohaResText = res.data.Hello)
         console.log("2")
-        this.$emit("parentMethod",this.cotohaResText,this.msg)
+        this.$emit("parentMethod",
+                    this.cotohaResText,
+                    this.msg,
+                    colorSelector(this.cotohaResText as sentiment))
+
       }
     }
   })
