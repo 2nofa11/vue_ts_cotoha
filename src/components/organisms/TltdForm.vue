@@ -24,15 +24,15 @@ export default defineComponent({
     },
     data(){
       return{
-        cotohaResText:"Hello" ,
+        
         cotohaResItems:[] as Array<zelda>
       }
     },
     methods:{
-      updateMessage(cotohaResText:string){
+      updateMessage(cotohaResText:string,msg:string){
         const zeldaIns:zelda ={
-          title : "要約",
-          description : cotohaResText,
+          title : cotohaResText,
+          description : msg,
           color : "green darken-4"
         }
         this.cotohaResItems.push(zeldaIns)

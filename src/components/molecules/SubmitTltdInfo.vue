@@ -28,12 +28,12 @@
     emits:["parentMethod"],
     methods:{
       deGet:async  function(){
-        const url = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
+        const url = `https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec?text=${this.msg}`  
         console.log("1")
         await axios.get(url,{adapter: axiosJsonpAdapter,})
         .then(res => this.cotohaResText = res.data.Hello)
         console.log("2")
-        this.$emit("parentMethod",this.cotohaResText)
+        this.$emit("parentMethod",this.cotohaResText,this.msg)
       }
     }
   })
