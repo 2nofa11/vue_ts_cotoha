@@ -1,14 +1,12 @@
 <template>
-    <v-card class="ma-1" v-bind:color="item.color" >
-        <v-card-title primary-title >
-            <div class="headline" >
-                {{item.title}}
-            </div>
-            <div>
-                {{item.description}}
-            </div>
-        </v-card-title>
-    </v-card>
+  <v-card class="ma-1 " v-bind:color="item.color" >
+      <v-card-title primary-title >
+              {{item.title}}
+      </v-card-title>
+      <v-card-text class="">
+          {{item.description}}
+      </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">

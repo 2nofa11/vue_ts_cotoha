@@ -24,10 +24,6 @@ export default defineComponent({
     }
   },
   props:{
-    name:{
-      type:String,
-      required:true
-    },
     loading:{
       type:Boolean,
       default:false
