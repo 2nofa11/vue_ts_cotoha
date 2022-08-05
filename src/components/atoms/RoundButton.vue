@@ -7,7 +7,9 @@
     :loading="loading"
     :disabled="loading"
     v-on:click="loader = 'loading'"
-  >{{name}}</v-btn>
+  >
+    {{name}}
+  </v-btn>
 </template>
 
 <script lang="ts">
