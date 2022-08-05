@@ -16,7 +16,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   data(){
     return{
-      loading:false,
       loader:null
     }
   },
@@ -24,12 +23,14 @@ export default defineComponent({
     name:{
       type:String,
       required:true
+    },
+    loading:{
+      type:Boolean,
+      default:false
     }
   },
   watch:{
     loader(){
-      this.loading = true
-      setTimeout(() => (this.loading = false),3000)
       this.loader = null
     }
   }

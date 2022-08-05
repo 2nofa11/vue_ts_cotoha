@@ -3,12 +3,10 @@
     <v-textarea v-model="msg" label="Text" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <RoundButton name="感情分析" v-on:click="deGet"></RoundButton>
+    <RoundButton name="感情分析" v-bind:loading="btnLoading" v-on:click="deGet"></RoundButton>
     <!-- <p>{{cotohaResText}}</p> -->
   </v-row>
 </template>
-
-
 
 <script lang="ts">
   import {defineComponent} from "vue"
@@ -52,16 +50,22 @@
       cotohaResText:"",
       itemColor:"",
       msg:"「つぶやく」まえに、その文章の感情を分析してみましょう！",
-      rules:[(v:string) => v.length <= 140 || "140文字以上は呟けませんよ！"]
-
+      rules:[(v:string) => v.length <= 140 || "140文字以上は呟けませんよ！"],
+      btnLoading:false
     }),
     emits:["parentMethod"],
     methods:{
       deGet:async  function(){
+        
+        this.btnLoading = true
+
         const url = `https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec?text=${this.msg}`  
         console.log("1")
         await axios.get(url,{adapter: axiosJsonpAdapter,})
-        .then(res => this.cotohaResText = res.data.Hello)
+        .then(res => {
+          this.cotohaResText = res.data.Hello
+          this.btnLoading = false
+        })
         console.log("2")
         this.$emit("parentMethod",
                     this.cotohaResText,
