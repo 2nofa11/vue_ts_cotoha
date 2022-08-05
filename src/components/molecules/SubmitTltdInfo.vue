@@ -3,14 +3,14 @@
     <v-textarea v-model="msg" label="Text" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <RoundButton name="感情分析" v-bind:loading="btnLoading" v-on:click="deGet"></RoundButton>
+    <DoubleIconButton v-bind:loading="btnLoading" v-on:click="deGet"></DoubleIconButton>
     <!-- <p>{{cotohaResText}}</p> -->
   </v-row>
 </template>
 
 <script lang="ts">
   import {defineComponent} from "vue"
-  import RoundButton from "../atoms/RoundButton.vue"
+  import DoubleIconButton from "../atoms/DoubleIconButton.vue"
   import axios from "axios"
 
   const colorMap = {
@@ -44,7 +44,7 @@
    
   export default defineComponent({
     components:{
-      RoundButton
+      DoubleIconButton
     },
     data:() => ({
       cotohaResText:"",
