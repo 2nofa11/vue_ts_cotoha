@@ -1,5 +1,5 @@
 <template>
-  <SubmitTltdInfo @parentMethod="updateMessage"></SubmitTltdInfo>
+  <SubmitForm @parentMethod="updateMessage"></SubmitForm>
   <!-- GASからのレスポンスが表示されます -->
   <v-row justify="center" class="ma-5">
     <PopupCard :itemsProps="cotohaResItems"></PopupCard>
@@ -8,10 +8,11 @@
 
 <script lang="ts">
   import {defineComponent} from "vue"
-  import SubmitTltdInfo from "../molecules/SubmitTltdInfo.vue"
+  import SubmitForm from "../molecules/SubmitForm.vue"
   import PopupCard from "../molecules/PopupCard.vue"
 
-  type zelda = {
+  // TODO 共通の型をPopupCardでも利用している。
+  type ResItem = {
     title:string,
     description:string,
     color:string
@@ -20,22 +21,21 @@
 
 export default defineComponent({
     components:{
-      SubmitTltdInfo,PopupCard
+      SubmitForm,PopupCard
     },
     data(){
-      return{
-        
-        cotohaResItems:[] as Array<zelda>
+      return{        
+        cotohaResItems:[] as Array<ResItem>
       }
     },
     methods:{
-      updateMessage(cotohaResText:string,msg:string,itemColor:string){
-        const zeldaIns:zelda ={
+      updateMessage(cotohaResText:string,inputText:string,itemColor:string){
+        const resItemIns:ResItem ={
           title : cotohaResText,
-          description : msg,
+          description : inputText,
           color : itemColor
         }
-        this.cotohaResItems.push(zeldaIns)
+        this.cotohaResItems.push(resItemIns)
 
       }
     }

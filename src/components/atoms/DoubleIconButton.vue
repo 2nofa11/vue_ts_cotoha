@@ -8,7 +8,9 @@
     :disabled="is_loading"
     v-on:click="loader = 'loading'"
   >
-    {{name}}
+    <V-icon>mdi-emoticon-happy-outline</V-icon>
+    or
+    <V-icon>mdi-emoticon-cry-outline</V-icon>
   </v-btn>
 </template>
 
@@ -22,10 +24,6 @@ export default defineComponent({
     }
   },
   props:{
-    name:{
-      type:String,
-      required:true
-    },
     is_loading:{
       type:Boolean,
       default:false

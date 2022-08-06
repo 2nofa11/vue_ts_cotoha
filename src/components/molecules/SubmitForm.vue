@@ -1,16 +1,15 @@
 <template>
   <div class="mt-5 mb-n7">
-    <v-textarea v-model="msg" label="Text" :rules="rules" auto-grow></v-textarea>
+    <v-textarea v-model="inputText" label="YourTweet" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <RoundButton name="感情分析" v-bind:loading="btnLoading" v-on:click="deGet"></RoundButton>
-    <!-- <p>{{cotohaResText}}</p> -->
+    <DoubleIconButton v-bind:is_loading="is_Loading" v-on:click="requestToGAS"></DoubleIconButton>
   </v-row>
 </template>
 
 <script lang="ts">
   import {defineComponent} from "vue"
-  import RoundButton from "../atoms/RoundButton.vue"
+  import DoubleIconButton from "../atoms/DoubleIconButton.vue"
   import axios from "axios"
 
   const colorMap = {
@@ -23,13 +22,8 @@
     Positive:"Positive",
     Neutral:"Neutral"
   } as const
-  type sentiment = typeof sentimentMap[keyof typeof sentimentMap]
-
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const axiosJsonpAdapter  = require('axios-jsonp')
-
-  
-  const colorSelector = (sentiment:sentiment) =>{
+  type Sentiment = typeof sentimentMap[keyof typeof sentimentMap]
+  const colorWithSentiment = (sentiment:Sentiment) =>{
     switch (sentiment){
       case sentimentMap.Negative:
         return colorMap.blue
@@ -42,36 +36,42 @@
     }
   }
    
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const axiosJsonpAdapter  = require('axios-jsonp')
+
+  const placeholderText = "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
+  const gasURL = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
+
   export default defineComponent({
     components:{
-      RoundButton
+      DoubleIconButton
     },
     data:() => ({
       cotohaResText:"",
-      itemColor:"",
-      msg:"「つぶやく」まえに、その文章の感情を分析してみましょう！",
+      inputText:placeholderText,
       rules:[(v:string) => v.length <= 140 || "140文字以上は呟けませんよ！"],
-      btnLoading:false
+      is_Loading:false
     }),
     emits:["parentMethod"],
+    // TODOロジックを書きまくっているから修正すべき
     methods:{
-      deGet:async  function(){
+      requestToGAS:async  function(){
         
-        this.btnLoading = true
+        this.is_Loading = true
 
-        const url = `https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec?text=${this.msg}`  
-        console.log("1")
+        const url = `${gasURL}?text=${this.inputText}`  
         await axios.get(url,{adapter: axiosJsonpAdapter,})
         .then(res => {
           this.cotohaResText = res.data.Hello
-          this.btnLoading = false
+          this.is_Loading = false
         })
-        console.log("2")
+
         this.$emit("parentMethod",
                     this.cotohaResText,
-                    this.msg,
-                    colorSelector(this.cotohaResText as sentiment))
+                    this.inputText,
+                    colorWithSentiment(this.cotohaResText as Sentiment))
 
+        this.inputText = ""
       }
     }
   })

@@ -3,7 +3,7 @@
   <v-main class="grey lighten-3">
     <v-container>
       <v-sheet elevation="1" rounded="lg">
-        <TltdForm/>
+        <SentimentAnalysis/>
       </v-sheet>
     </v-container>
   </v-main>
@@ -11,12 +11,12 @@
 
 <script lang="ts">
 import {defineComponent} from "vue"
-import TltdForm from '../organisms/TltdForm.vue'
+import SentimentAnalysis from '../organisms/SentimentAnalysis.vue'
 import Header from '../organisms/HeaderPart.vue'
 
 export default defineComponent({
   components: {
-    TltdForm,Header
+    SentimentAnalysis,Header
   },
 })
 </script>
