@@ -4,8 +4,8 @@
     elevation="1"
     rounded
     x-large
-    :loading="loading"
-    :disabled="loading"
+    :loading="is_loading"
+    :disabled="is_loading"
     v-on:click="loader = 'loading'"
   >
     {{name}}
@@ -26,7 +26,7 @@ export default defineComponent({
       type:String,
       required:true
     },
-    loading:{
+    is_loading:{
       type:Boolean,
       default:false
     }

@@ -3,7 +3,7 @@
     <v-textarea v-model="inputText" label="YourTweet" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <DoubleIconButton v-bind:loading="is_Loading" v-on:click="requestToGAS"></DoubleIconButton>
+    <DoubleIconButton v-bind:is_loading="is_Loading" v-on:click="requestToGAS"></DoubleIconButton>
   </v-row>
 </template>
 
