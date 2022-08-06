@@ -1,5 +1,5 @@
 <template>
-  <SubmitTltdInfo @parentMethod="updateMessage"></SubmitTltdInfo>
+  <SubmitForm @parentMethod="updateMessage"></SubmitForm>
   <!-- GASからのレスポンスが表示されます -->
   <v-row justify="center" class="ma-5">
     <PopupCard :itemsProps="cotohaResItems"></PopupCard>
@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import {defineComponent} from "vue"
-  import SubmitTltdInfo from "../molecules/SubmitTltdInfo.vue"
+  import SubmitForm from "../molecules/SubmitForm.vue"
   import PopupCard from "../molecules/PopupCard.vue"
 
   // TODO 共通の型をPopupCardでも利用している。
@@ -21,7 +21,7 @@
 
 export default defineComponent({
     components:{
-      SubmitTltdInfo,PopupCard
+      SubmitForm,PopupCard
     },
     data(){
       return{        
