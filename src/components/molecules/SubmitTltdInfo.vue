@@ -3,7 +3,7 @@
     <v-textarea v-model="inputText" label="YourTweet" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <DoubleIconButton v-bind:loading="is_Loading" v-on:click="deGet"></DoubleIconButton>
+    <DoubleIconButton v-bind:loading="is_Loading" v-on:click="requestToGAS"></DoubleIconButton>
   </v-row>
 </template>
 
@@ -40,7 +40,7 @@
   const axiosJsonpAdapter  = require('axios-jsonp')
 
   const placeholderText = "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
-
+  const gasURL = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
 
   export default defineComponent({
     components:{
@@ -55,12 +55,11 @@
     emits:["parentMethod"],
     // TODOロジックを書きまくっているから修正すべき
     methods:{
-      deGet:async  function(){
+      requestToGAS:async  function(){
         
         this.is_Loading = true
 
-        const url = `https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec?text=${this.inputText}`  
-
+        const url = `${gasURL}?text=${this.inputText}`  
         await axios.get(url,{adapter: axiosJsonpAdapter,})
         .then(res => {
           this.cotohaResText = res.data.Hello
