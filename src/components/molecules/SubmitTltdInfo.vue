@@ -1,10 +1,9 @@
 <template>
   <div class="mt-5 mb-n7">
-    <v-textarea v-model="msg" label="Text" :rules="rules" auto-grow></v-textarea>
+    <v-textarea v-model="inputText" label="YourTweet" :rules="rules" auto-grow></v-textarea>
   </div>
   <v-row  justify="center">
-    <DoubleIconButton v-bind:loading="btnLoading" v-on:click="deGet"></DoubleIconButton>
-    <!-- <p>{{cotohaResText}}</p> -->
+    <DoubleIconButton v-bind:loading="is_Loading" v-on:click="deGet"></DoubleIconButton>
   </v-row>
 </template>
 
@@ -24,12 +23,7 @@
     Neutral:"Neutral"
   } as const
   type sentiment = typeof sentimentMap[keyof typeof sentimentMap]
-
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const axiosJsonpAdapter  = require('axios-jsonp')
-
-  
-  const colorSelector = (sentiment:sentiment) =>{
+  const colorWithSentiment = (sentiment:sentiment) =>{
     switch (sentiment){
       case sentimentMap.Negative:
         return colorMap.blue
@@ -42,36 +36,43 @@
     }
   }
    
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const axiosJsonpAdapter  = require('axios-jsonp')
+
+  const placeholderText = "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
+
+
   export default defineComponent({
     components:{
       DoubleIconButton
     },
     data:() => ({
       cotohaResText:"",
-      itemColor:"",
-      msg:"「つぶやく」まえに、その文章の感情を分析してみましょう！",
+      inputText:placeholderText,
       rules:[(v:string) => v.length <= 140 || "140文字以上は呟けませんよ！"],
-      btnLoading:false
+      is_Loading:false
     }),
     emits:["parentMethod"],
+    // TODOロジックを書きまくっているから修正すべき
     methods:{
       deGet:async  function(){
         
-        this.btnLoading = true
+        this.is_Loading = true
 
-        const url = `https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec?text=${this.msg}`  
-        console.log("1")
+        const url = `https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec?text=${this.inputText}`  
+
         await axios.get(url,{adapter: axiosJsonpAdapter,})
         .then(res => {
           this.cotohaResText = res.data.Hello
-          this.btnLoading = false
+          this.is_Loading = false
         })
-        console.log("2")
+
         this.$emit("parentMethod",
                     this.cotohaResText,
-                    this.msg,
-                    colorSelector(this.cotohaResText as sentiment))
+                    this.inputText,
+                    colorWithSentiment(this.cotohaResText as sentiment))
 
+        this.inputText = ""
       }
     }
   })

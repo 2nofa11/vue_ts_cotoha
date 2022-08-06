@@ -11,7 +11,8 @@
   import SubmitTltdInfo from "../molecules/SubmitTltdInfo.vue"
   import PopupCard from "../molecules/PopupCard.vue"
 
-  type zelda = {
+  // TODO 共通の型をPopupCardでも利用している。
+  type resItem = {
     title:string,
     description:string,
     color:string
@@ -23,19 +24,18 @@ export default defineComponent({
       SubmitTltdInfo,PopupCard
     },
     data(){
-      return{
-        
-        cotohaResItems:[] as Array<zelda>
+      return{        
+        cotohaResItems:[] as Array<resItem>
       }
     },
     methods:{
-      updateMessage(cotohaResText:string,msg:string,itemColor:string){
-        const zeldaIns:zelda ={
+      updateMessage(cotohaResText:string,inputText:string,itemColor:string){
+        const resItemIns:resItem ={
           title : cotohaResText,
-          description : msg,
+          description : inputText,
           color : itemColor
         }
-        this.cotohaResItems.push(zeldaIns)
+        this.cotohaResItems.push(resItemIns)
 
       }
     }
