@@ -12,7 +12,7 @@
   import PopupCard from "../molecules/PopupCard.vue"
 
   // TODO 共通の型をPopupCardでも利用している。
-  type resItem = {
+  type ResItem = {
     title:string,
     description:string,
     color:string
@@ -25,12 +25,12 @@ export default defineComponent({
     },
     data(){
       return{        
-        cotohaResItems:[] as Array<resItem>
+        cotohaResItems:[] as Array<ResItem>
       }
     },
     methods:{
       updateMessage(cotohaResText:string,inputText:string,itemColor:string){
-        const resItemIns:resItem ={
+        const resItemIns:ResItem ={
           title : cotohaResText,
           description : inputText,
           color : itemColor

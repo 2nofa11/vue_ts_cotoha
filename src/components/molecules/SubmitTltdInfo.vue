@@ -22,8 +22,8 @@
     Positive:"Positive",
     Neutral:"Neutral"
   } as const
-  type sentiment = typeof sentimentMap[keyof typeof sentimentMap]
-  const colorWithSentiment = (sentiment:sentiment) =>{
+  type Sentiment = typeof sentimentMap[keyof typeof sentimentMap]
+  const colorWithSentiment = (sentiment:Sentiment) =>{
     switch (sentiment){
       case sentimentMap.Negative:
         return colorMap.blue
@@ -69,7 +69,7 @@
         this.$emit("parentMethod",
                     this.cotohaResText,
                     this.inputText,
-                    colorWithSentiment(this.cotohaResText as sentiment))
+                    colorWithSentiment(this.cotohaResText as Sentiment))
 
         this.inputText = ""
       }

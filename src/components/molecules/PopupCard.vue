@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue'
 import NormalCard from "../atoms/NormalCard.vue"
 
-type zelda = {
+type ItemInfo = {
     title:string,
     description:string,
     color:string
@@ -25,7 +25,7 @@ export default defineComponent({
     data(){
         return{
             itemIndex:0,
-            items:[] as Array<zelda>
+            items:[] as Array<ItemInfo>
         }
     },
     props:{
