@@ -41,12 +41,7 @@
 
   const placeholderText = "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
   const is_correctTextInfo = (inputText:string) => { 
-    console.log(inputText)
-    if(!inputText || inputText == placeholderText){
-      return true
-    }else{
-      return false
-    }
+    return (!inputText || inputText == placeholderText) ? true : false 
   }
   const gasURL = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
 
