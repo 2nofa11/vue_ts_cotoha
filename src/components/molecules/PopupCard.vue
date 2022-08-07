@@ -22,12 +22,6 @@ export default defineComponent({
     components:{
         NormalCard
     },
-    data(){
-        return{
-            itemIndex:0,
-            items:[] as Array<ItemInfo>
-        }
-    },
     props:{
         itemsProps:{required:true}
     }
