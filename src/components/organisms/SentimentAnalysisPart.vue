@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent} from "vue"
+  import { defineComponent } from "vue"
   import SubmitForm from "../molecules/SubmitForm.vue"
   import PopupCard from "../molecules/PopupCard.vue"
 
