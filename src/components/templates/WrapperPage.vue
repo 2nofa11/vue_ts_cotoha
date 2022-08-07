@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import {defineComponent} from "vue"
-import SentimentAnalysis from '../organisms/SentimentAnalysis.vue'
+import SentimentAnalysis from '../organisms/SentimentAnalysisPart.vue'
 import Header from '../organisms/HeaderPart.vue'
 
 export default defineComponent({

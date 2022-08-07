@@ -1,5 +1,5 @@
 <template>
-  <SubmitForm @parentMethod="updateMessage"></SubmitForm>
+  <SubmitForm @parentMethod="addResItem"></SubmitForm>
   <!-- GASからのレスポンスが表示されます -->
   <v-row justify="center" class="ma-5">
     <PopupCard :itemsProps="cotohaResItems"></PopupCard>
@@ -20,6 +20,7 @@
   
 
 export default defineComponent({
+    // TODO moleculesのロジックをここで処理したい
     components:{
       SubmitForm,PopupCard
     },
@@ -29,7 +30,7 @@ export default defineComponent({
       }
     },
     methods:{
-      updateMessage(cotohaResText:string,inputText:string,itemColor:string){
+      addResItem(cotohaResText:string,inputText:string,itemColor:string){
         const resItemIns:ResItem ={
           title : cotohaResText,
           description : inputText,
