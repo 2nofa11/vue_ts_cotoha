@@ -40,6 +40,14 @@
   const axiosJsonpAdapter  = require('axios-jsonp')
 
   const placeholderText = "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
+  const is_correctTextInfo = (inputText:string) => { 
+    console.log(inputText)
+    if(!inputText || inputText == placeholderText){
+      return true
+    }else{
+      return false
+    }
+  }
   const gasURL = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
 
   export default defineComponent({
@@ -57,6 +65,11 @@
     methods:{
       requestToGAS:async  function(){
         
+        // GASに投げる文章が適切か判断
+        if(is_correctTextInfo(this.inputText)){
+          return 
+        }
+
         this.is_Loading = true
 
         const url = `${gasURL}?text=${this.inputText}`  
