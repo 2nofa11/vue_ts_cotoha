@@ -11,6 +11,7 @@
   import { defineComponent } from "vue"
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
   import axios from "axios"
+  import {is_correctTextInfo} from "./SubmitForm.module"
 
   const colorMap = {
     amber:"amber lighten-4",
@@ -40,9 +41,6 @@
   const axiosJsonpAdapter  = require('axios-jsonp')
 
   const placeholderText = "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
-  const is_correctTextInfo = (inputText:string) => { 
-    return (!inputText || inputText == placeholderText) ? true : false 
-  }
   const gasURL = "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
 
   export default defineComponent({
@@ -61,7 +59,7 @@
       requestToGAS:async  function(){
         
         // GASに投げる文章が適切か判断
-        if(is_correctTextInfo(this.inputText)){
+        if(is_correctTextInfo(this.inputText,placeholderText)){
           return 
         }
 
