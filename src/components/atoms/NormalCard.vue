@@ -3,7 +3,7 @@
       <v-card-title primary-title >
               {{item.title}}
       </v-card-title>
-      <v-card-text class="">
+      <v-card-text>
           {{item.description}}
       </v-card-text>
   </v-card>
@@ -21,3 +21,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.v-card-title{
+  color: grey;
+}
+.v-card-text{
+  color: gray;
+}
+</style>
