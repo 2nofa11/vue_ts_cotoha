@@ -19,7 +19,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jest"
+    "test": "jest",
+    "format": " npx prettier -w  */**/*.vue &&  npx prettier -w  */**/*.ts"
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
@@ -28,6 +29,7 @@
     "axios-jsonp": "^1.0.4",
     "core-js": "^3.8.3",
     "jest": "^28.1.3",
+    "prettier": "2.7.1",
     "roboto-fontface": "*",
     "ts-jest": "^28.0.7",
     "vue": "^3.2.13",
@@ -42,6 +44,7 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",

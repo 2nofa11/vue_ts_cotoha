@@ -15,24 +15,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue"
 
 export default defineComponent({
-  data(){
-    return{
-      loader:null
+  data() {
+    return {
+      loader: null,
     }
   },
-  props:{
-    is_loading:{
-      type:Boolean,
-      default:false
-    }
+  props: {
+    is_loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  watch:{
-    loader(){
+  watch: {
+    loader() {
       this.loader = null
-    }
-  }
+    },
+  },
 })
 </script>
