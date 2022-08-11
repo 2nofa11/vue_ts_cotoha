@@ -75,10 +75,13 @@
         this.is_Loading = true
 
         const url = `${gasURL}?text=${this.inputText}`
-        await axios.get(url, { adapter: axiosJsonpAdapter }).then((res) => {
-          this.cotohaResText = res.data.Hello
-          this.is_Loading = false
-        })
+        await axios
+          .get(url, { adapter: axiosJsonpAdapter })
+          .then((response) => {
+            this.cotohaResText = response.data.Hello
+            this.is_Loading = false
+          })
+          .catch((error) => console.log(error))
 
         this.$emit(
           "parentMethod",
