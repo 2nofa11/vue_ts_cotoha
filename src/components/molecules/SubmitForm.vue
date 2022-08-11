@@ -18,9 +18,11 @@
 <script lang="ts">
   import { defineComponent } from "vue"
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
+
   import axios from "axios"
   import { is_correctTextInfo } from "./SubmitForm.module"
 
+  // APIレスポンスの表示色ヘルパー
   const colorMap = {
     amber: "amber lighten-4",
     green: "green lighten-4",
@@ -47,7 +49,6 @@
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const axiosJsonpAdapter = require("axios-jsonp")
-
   const placeholderText =
     "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
   const gasURL =
@@ -67,13 +68,12 @@
     // TODOロジックを書きまくっているから修正すべき
     methods: {
       requestToGAS: async function () {
+        this.is_Loading = true
+
         // GASに投げる文章が適切か判断
         if (is_correctTextInfo(this.inputText, placeholderText)) {
           return
         }
-
-        this.is_Loading = true
-
         const url = `${gasURL}?text=${this.inputText}`
         await axios
           .get(url, { adapter: axiosJsonpAdapter })
