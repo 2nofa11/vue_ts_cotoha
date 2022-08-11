@@ -13,28 +13,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+  import { defineComponent } from "vue"
 
-export default defineComponent({
-  data() {
-    return {
-      loader: null,
-    }
-  },
-  props: {
-    name: {
-      type: String,
-      required: true,
+  export default defineComponent({
+    data() {
+      return {
+        loader: null,
+      }
     },
-    is_loading: {
-      type: Boolean,
-      default: false,
+    props: {
+      name: {
+        type: String,
+        required: true,
+      },
+      is_loading: {
+        type: Boolean,
+        default: false,
+      },
     },
-  },
-  watch: {
-    loader() {
-      this.loader = null
+    watch: {
+      loader() {
+        this.loader = null
+      },
     },
-  },
-})
+  })
 </script>

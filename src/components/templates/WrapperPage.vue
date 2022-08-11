@@ -10,14 +10,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
-import SentimentAnalysis from "../organisms/SentimentAnalysisPart.vue"
-import Header from "../organisms/HeaderPart.vue"
+  import { defineComponent } from "vue"
+  import SentimentAnalysis from "../organisms/SentimentAnalysisPart.vue"
+  import Header from "../organisms/HeaderPart.vue"
 
-export default defineComponent({
-  components: {
-    SentimentAnalysis,
-    Header,
-  },
-})
+  export default defineComponent({
+    components: {
+      SentimentAnalysis,
+      Header,
+    },
+  })
 </script>

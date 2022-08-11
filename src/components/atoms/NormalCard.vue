@@ -10,23 +10,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+  import { defineComponent } from "vue"
 
-export default defineComponent({
-  props: {
-    item: {
-      type: Object,
-      required: true,
+  export default defineComponent({
+    props: {
+      item: {
+        type: Object,
+        required: true,
+      },
     },
-  },
-})
+  })
 </script>
 
 <style scoped>
-.v-card-title {
-  color: grey;
-}
-.v-card-text {
-  color: gray;
-}
+  .v-card-title {
+    color: grey;
+  }
+  .v-card-text {
+    color: gray;
+  }
 </style>

@@ -11,4 +11,5 @@ module.exports = {
   trailingComma: "es5", //デフォルト
   bracketSpacing: true, //デフォルト
   jsxBracketSameLine: false, //デフォルト
-};
+  vueIndentScriptAndStyle: true,
+}

@@ -9,37 +9,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
-import NormalCard from "../atoms/NormalCard.vue"
+  import { defineComponent } from "vue"
+  import NormalCard from "../atoms/NormalCard.vue"
 
-export default defineComponent({
-  components: {
-    NormalCard,
-  },
-  props: {
-    itemsProps: { required: true },
-  },
-})
+  export default defineComponent({
+    components: {
+      NormalCard,
+    },
+    props: {
+      itemsProps: { required: true },
+    },
+  })
 </script>
 
 <style scoped>
-.card-anim-enter-active {
-  animation: fadeInUp 0.7s;
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(60px);
+  .card-anim-enter-active {
+    animation: fadeInUp 0.7s;
+    animation-delay: 0.1s;
     opacity: 0;
   }
-  60% {
-    opacity: 0.3;
+
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+    60% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
   }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
 </style>
