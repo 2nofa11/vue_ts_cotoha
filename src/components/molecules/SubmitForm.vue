@@ -18,7 +18,6 @@
 <script lang="ts">
   import { defineComponent } from "vue"
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
-
   import axios from "axios"
   import { is_correctTextInfo } from "./SubmitForm.module"
 
@@ -47,6 +46,7 @@
     }
   }
 
+  // CROSになってしまうため仕方なくjsonpを利用
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const axiosJsonpAdapter = require("axios-jsonp")
   const placeholderText =
@@ -67,6 +67,7 @@
     emits: ["parentMethod"],
     // TODOロジックを書きまくっているから修正すべき
     methods: {
+      // 自分が入力した文章の感情を判定するメソッド
       requestToGAS: async function () {
         this.is_Loading = true
 
@@ -74,15 +75,16 @@
         if (is_correctTextInfo(this.inputText, placeholderText)) {
           return
         }
+        // 文章内容をもとに、感情分析結果を取得
         const url = `${gasURL}?text=${this.inputText}`
         await axios
           .get(url, { adapter: axiosJsonpAdapter })
           .then((response) => {
             this.cotohaResText = response.data.Hello
-            this.is_Loading = false
           })
           .catch((error) => console.log(error))
 
+        // 親コンポーネントにGASから取得できた情報を返却
         this.$emit(
           "parentMethod",
           this.cotohaResText,
@@ -90,6 +92,7 @@
           colorWithSentiment(this.cotohaResText as Sentiment)
         )
 
+        this.is_Loading = false
         this.inputText = ""
       },
     },

@@ -30,6 +30,7 @@
       }
     },
     methods: {
+      // GASから取得した判定結果をカードに追加
       addResItem(cotohaResText: string, inputText: string, itemColor: string) {
         const resItemIns: ResItem = {
           title: cotohaResText,
