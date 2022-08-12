@@ -20,27 +20,31 @@
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
   import axios from "axios"
   import { is_correctTextInfo } from "./SubmitForm.module"
+  import { Color, colorMap } from "../../types/color.type"
+  import { Sentiment, sentimentMap } from "../../types/sentiment.type"
 
-  // APIレスポンスの表示色ヘルパー
-  const colorMap = {
-    amber: "amber lighten-4",
-    green: "green lighten-4",
-    blue: "blue lighten-4",
-  } as const
-  const sentimentMap = {
-    Negative: "Negative",
-    Positive: "Positive",
-    Neutral: "Neutral",
-  } as const
-  type Sentiment = typeof sentimentMap[keyof typeof sentimentMap]
-  const colorWithSentiment = (sentiment: Sentiment) => {
+  type SentimentInfo = {
+    color: Color
+    title: string
+  }
+
+  const colorWithSentiment = (sentiment: Sentiment): SentimentInfo => {
     switch (sentiment) {
       case sentimentMap.Negative:
-        return colorMap.blue
+        return {
+          color: colorMap.blue,
+          title: "悲観的な文章です...",
+        }
       case sentimentMap.Positive:
-        return colorMap.amber
+        return {
+          color: colorMap.amber,
+          title: "元気になる文章です!!",
+        }
       case sentimentMap.Neutral:
-        return colorMap.green
+        return {
+          color: colorMap.green,
+          title: "ノーマルな文章です",
+        }
       default:
         throw new Error("不正な値です。")
     }
@@ -59,7 +63,7 @@
       DoubleIconButton,
     },
     data: () => ({
-      cotohaResText: "",
+      cotohaResText: "" as Sentiment,
       inputText: placeholderText,
       rules: [(v: string) => v.length <= 140 || "140文字以上は呟けませんよ！"],
       is_Loading: false,
@@ -69,12 +73,12 @@
     methods: {
       // 自分が入力した文章の感情を判定するメソッド
       requestToGAS: async function () {
-        this.is_Loading = true
-
         // GASに投げる文章が適切か判断
         if (is_correctTextInfo(this.inputText, placeholderText)) {
           return
         }
+        this.is_Loading = true
+
         // 文章内容をもとに、感情分析結果を取得
         const url = `${gasURL}?text=${this.inputText}`
         await axios
@@ -85,11 +89,14 @@
           .catch((error) => console.log(error))
 
         // 親コンポーネントにGASから取得できた情報を返却
+        const displayInfo: SentimentInfo = colorWithSentiment(
+          this.cotohaResText
+        )
         this.$emit(
           "parentMethod",
-          this.cotohaResText,
+          displayInfo.title,
           this.inputText,
-          colorWithSentiment(this.cotohaResText as Sentiment)
+          displayInfo.color
         )
 
         this.is_Loading = false
