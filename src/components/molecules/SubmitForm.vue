@@ -19,36 +19,9 @@
   import { defineComponent } from "vue"
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
   import axios from "axios"
-  import { is_correctTextInfo } from "./SubmitForm.module"
-  import { Color, colorMap } from "../../types/color.type"
-  import { Sentiment, sentimentMap } from "../../types/sentiment.type"
-
-  type SentimentInfo = {
-    color: Color
-    title: string
-  }
-
-  const colorWithSentiment = (sentiment: Sentiment): SentimentInfo => {
-    switch (sentiment) {
-      case sentimentMap.Negative:
-        return {
-          color: colorMap.blue,
-          title: "悲観的な文章です...",
-        }
-      case sentimentMap.Positive:
-        return {
-          color: colorMap.amber,
-          title: "元気になる文章です!!",
-        }
-      case sentimentMap.Neutral:
-        return {
-          color: colorMap.green,
-          title: "ノーマルな文章です",
-        }
-      default:
-        throw new Error("不正な値です。")
-    }
-  }
+  import { is_correctTextInfo, colorWithSentiment } from "./SubmitForm.module"
+  import { Sentiment } from "../../types/sentiment.type"
+  import { SentimentInfo } from "../../types/sentimentInfo.type"
 
   // CROSになってしまうため仕方なくjsonpを利用
   // eslint-disable-next-line @typescript-eslint/no-var-requires
