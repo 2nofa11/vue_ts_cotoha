@@ -25,6 +25,9 @@ export const colorWithSentiment = (sentiment: Sentiment): SentimentInfo => {
         title: "ノーマルな文章です",
       }
     default:
-      throw new Error("不正な値です。")
+      return {
+        color: colorMap.gray,
+        title: "不正な値です。",
+      }
   }
 }

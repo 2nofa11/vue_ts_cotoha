@@ -25,4 +25,30 @@ describe("is_correctTextInfoのテスト", (): void => {
     }
     expect(response).toStrictEqual(expected)
   })
+  test("Sentimentがポジティブ⇒色：Amber、タイトル「元気になる文章です!!」を返却", (): void => {
+    const positive: Sentiment = sentimentMap.Positive
+    const response: SentimentInfo = colorWithSentiment(positive)
+    const expected: SentimentInfo = {
+      color: colorMap.amber,
+      title: "元気になる文章です!!",
+    }
+    expect(response).toStrictEqual(expected)
+  })
+  test("Sentimentがニュートラル⇒色：Green、タイトル「元気になる文章です!!」を返却", (): void => {
+    const neutral: Sentiment = sentimentMap.Neutral
+    const response: SentimentInfo = colorWithSentiment(neutral)
+    const expected: SentimentInfo = {
+      color: colorMap.green,
+      title: "ノーマルな文章です",
+    }
+    expect(response).toStrictEqual(expected)
+  })
+  test("Sentimentが帰ってこなかった場合、タイトル「不正な値です。」を返却", (): void => {
+    const response: SentimentInfo = colorWithSentiment(undefined as any)
+    const expected: SentimentInfo = {
+      color: colorMap.gray,
+      title: "不正な値です。",
+    }
+    expect(response).toStrictEqual(expected)
+  })
 })

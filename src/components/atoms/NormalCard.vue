@@ -24,7 +24,7 @@
 
 <style scoped>
   .v-card-title {
-    color: grey;
+    color: white;
   }
   .v-card-text {
     color: gray;
