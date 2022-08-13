@@ -10,13 +10,7 @@
   import { defineComponent } from "vue"
   import SubmitForm from "../molecules/SubmitForm.vue"
   import PopupCard from "../molecules/PopupCard.vue"
-
-  // TODO 共通の型をPopupCardでも利用している。
-  type ResItem = {
-    title: string
-    description: string
-    color: string
-  }
+  import { ResItem } from "../../types/resItem.type"
 
   export default defineComponent({
     // TODO moleculesのロジックをここで処理したい
