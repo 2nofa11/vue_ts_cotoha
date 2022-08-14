@@ -31,3 +31,17 @@ export const colorWithSentiment = (sentiment: Sentiment): SentimentInfo => {
       }
   }
 }
+
+import axios from "axios"
+// CROSになってしまうため仕方なくjsonpを利用
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const axiosJsonpAdapter = require("axios-jsonp")
+
+export async function analyzeSentimentWtihGAS(url: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, { adapter: axiosJsonpAdapter })
+      .then((response) => resolve(response.data))
+      .catch((error) => reject(error.response))
+  })
+}

@@ -19,7 +19,11 @@
   import { defineComponent } from "vue"
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
   import axios from "axios"
-  import { is_correctTextInfo, colorWithSentiment } from "./SubmitForm.module"
+  import {
+    is_correctTextInfo,
+    colorWithSentiment,
+    analyzeSentimentWtihGAS,
+  } from "./SubmitForm.module"
   import { Sentiment } from "../../types/sentiment.type"
   import { SentimentInfo } from "../../types/sentimentInfo.type"
 
@@ -54,12 +58,9 @@
 
         // 文章内容をもとに、感情分析結果を取得
         const url = `${gasURL}?text=${this.inputText}`
-        await axios
-          .get(url, { adapter: axiosJsonpAdapter })
-          .then((response) => {
-            this.cotohaResText = response.data.Hello
-          })
-          .catch((error) => console.log(error))
+        await analyzeSentimentWtihGAS(url).then(
+          (data) => (this.cotohaResText = data.Hello)
+        )
 
         // 親コンポーネントにGASから取得できた情報を返却
         const displayInfo: SentimentInfo = colorWithSentiment(
