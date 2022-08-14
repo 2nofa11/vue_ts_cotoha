@@ -18,7 +18,6 @@
 <script lang="ts">
   import { defineComponent } from "vue"
   import DoubleIconButton from "../atoms/DoubleIconButton.vue"
-  import axios from "axios"
   import {
     is_correctTextInfo,
     colorWithSentiment,
@@ -28,8 +27,6 @@
   import { SentimentInfo } from "../../types/sentimentInfo.type"
 
   // CROSになってしまうため仕方なくjsonpを利用
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const axiosJsonpAdapter = require("axios-jsonp")
   const placeholderText =
     "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
   const gasURL =
