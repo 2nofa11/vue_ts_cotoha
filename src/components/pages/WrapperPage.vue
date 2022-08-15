@@ -1,14 +1,14 @@
 <template>
-  <Template/>
+  <Template />
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent } from "vue"
   import WrapperPage from "../templates/WrapperPage.vue"
 
   export default defineComponent({
-    components:{
-      Template:WrapperPage
-    }
+    components: {
+      Template: WrapperPage,
+    },
   })
 </script>
