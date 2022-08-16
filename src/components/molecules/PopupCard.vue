@@ -2,7 +2,7 @@
   <v-container fluid>
     <transition-group name="card-anim">
       <div row warp v-for="(item, index) in itemsProps" v-bind:key="index">
-        <NormalCard :item="item"></NormalCard>
+        <NormalCard :item-info="item"></NormalCard>
       </div>
     </transition-group>
   </v-container>
