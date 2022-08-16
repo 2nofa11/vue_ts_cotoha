@@ -2,7 +2,7 @@
   <div>
     <SubmitForm
       @parentMethod="requestToGAS"
-      :is_Loading="is_Loading"
+      :is-loading="isLoading"
     ></SubmitForm>
     <!-- GASからのレスポンスが表示されます -->
     <v-row justify="center" class="ma-5">
@@ -37,13 +37,13 @@
     data() {
       return {
         cotohaResItems: [] as Array<ResItem>,
-        is_Loading: false,
+        isLoading: false,
       }
     },
     methods: {
       // GASから取得した判定結果をカードに追加
       async requestToGAS(inputText: string) {
-        this.is_Loading = true
+        this.isLoading = true
 
         let result = "" as Sentiment
         // 文章内容をもとに、感情分析結果を取得
@@ -59,7 +59,7 @@
           color: displayInfo.color,
         }
         this.cotohaResItems.push(resItemIns)
-        this.is_Loading = false
+        this.isLoading = false
       },
     },
   })
