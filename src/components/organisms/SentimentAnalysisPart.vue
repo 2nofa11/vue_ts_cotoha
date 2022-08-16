@@ -6,7 +6,7 @@
     ></SubmitForm>
     <!-- GASからのレスポンスが表示されます -->
     <v-row justify="center" class="ma-5">
-      <PopupCard :items-props="cotohaResItems"></PopupCard>
+      <PopupCard :itemsProps="cotohaResItems"></PopupCard>
     </v-row>
   </div>
 </template>
