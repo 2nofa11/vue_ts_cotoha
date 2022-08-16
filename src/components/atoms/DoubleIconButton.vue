@@ -4,8 +4,8 @@
     elevation="1"
     rounded
     x-large
-    :loading="isLoading"
-    :disabled="isLoading"
+    :loading="is_Loading"
+    :disabled="is_Loading"
     v-on:click="loader = 'loading'"
   >
     <V-icon>mdi-emoticon-happy-outline</V-icon>
@@ -24,7 +24,7 @@
       }
     },
     props: {
-      isLoading: {
+      is_Loading: {
         type: Boolean,
         default: false,
       },

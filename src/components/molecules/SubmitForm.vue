@@ -9,7 +9,7 @@
   </div>
   <v-row justify="center">
     <DoubleIconButton
-      :is-loading="isLoading"
+      :is_Loading="is_Loading"
       v-on:click="submitTextInfo"
     ></DoubleIconButton>
   </v-row>
@@ -32,7 +32,7 @@
       rules: [(v: string) => v.length <= 140 || "140文字以上は呟けませんよ！"],
     }),
     props: {
-      isLoading: { required: true },
+      is_Loading: { required: true },
     },
     emits: ["parentMethod"],
     methods: {
