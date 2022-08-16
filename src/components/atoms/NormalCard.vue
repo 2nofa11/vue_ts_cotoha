@@ -1,10 +1,10 @@
 <template>
-  <v-card class="ma-1" v-bind:color="item.color">
+  <v-card class="ma-1" v-bind:color="itemInfo.color">
     <v-card-title primary-title>
-      {{ item.title }}
+      {{ itemInfo.title }}
     </v-card-title>
     <v-card-text>
-      {{ item.description }}
+      {{ itemInfo.description }}
     </v-card-text>
   </v-card>
 </template>
@@ -14,7 +14,7 @@
 
   export default defineComponent({
     props: {
-      item: {
+      itemInfo: {
         type: Object,
         required: true,
       },
