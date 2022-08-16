@@ -14,7 +14,7 @@
 
   export default defineComponent({
     props: {
-      itemInfo: {
+      item: {
         type: Object,
         required: true,
       },
