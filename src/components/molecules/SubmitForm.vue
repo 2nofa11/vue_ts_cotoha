@@ -34,14 +34,13 @@
     props: {
       isLoading: { required: true },
     },
-    emits: ["parentMethod"],
     methods: {
       submitTextInfo: function () {
         // GASに投げる文章が適切か判断
         if (is_correctTextInfo(this.inputText, placeholderText)) {
           return
         }
-        this.$emit("parentMethod", this.inputText)
+        this.$emit("parent-method", this.inputText)
         this.inputText = ""
       },
     },

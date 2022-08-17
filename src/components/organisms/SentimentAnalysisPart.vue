@@ -1,7 +1,7 @@
 <template>
   <div>
     <SubmitForm
-      @parentMethod="requestToGAS"
+      @parent-method="requestToGAS"
       :is-loading="isLoading"
     ></SubmitForm>
     <!-- GASからのレスポンスが表示されます -->
@@ -26,8 +26,6 @@
   const gasURL =
     "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
 
-  const placeholderText =
-    "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
   export default defineComponent({
     // TODO moleculesのロジックをここで処理したい
     components: {
