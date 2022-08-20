@@ -34,6 +34,7 @@
     props: {
       isLoading: { required: true },
     },
+    emits: ["parent-method"],
     methods: {
       submitTextInfo: function () {
         // GASに投げる文章が適切か判断
