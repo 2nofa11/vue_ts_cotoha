@@ -1,13 +1,15 @@
 <template>
   <div>
-    <SubmitForm
-      @parent-method="requestToGAS"
-      :is-loading="isLoading"
-    ></SubmitForm>
-    <!-- GASからのレスポンスが表示されます -->
-    <v-row justify="center" class="ma-5">
-      <PopupCard :items-props="cotohaResItems"></PopupCard>
-    </v-row>
+    <v-sheet elevation="1" rounded="lg">
+      <SubmitForm
+        @parent-method="requestToGAS"
+        :is-loading="isLoading"
+      ></SubmitForm>
+      <!-- GASからのレスポンスが表示されます -->
+      <v-row justify="center" class="ma-5">
+        <PopupCard :items-props="cotohaResItems"></PopupCard>
+      </v-row>
+    </v-sheet>
   </div>
 </template>
 

@@ -2,9 +2,7 @@
   <Header></Header>
   <v-main class="grey lighten-3">
     <v-container>
-      <v-sheet elevation="1" rounded="lg">
-        <SentimentAnalysis />
-      </v-sheet>
+      <SentimentAnalysis />
     </v-container>
   </v-main>
 </template>
