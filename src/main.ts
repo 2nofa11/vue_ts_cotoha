@@ -4,6 +4,7 @@ import vuetify from "./plugins/vuetify"
 import { createWebHistory } from "vue-router"
 import createRouter from "./router"
 import { loadFonts } from "./plugins/webfontloader"
+import "animate.css"
 
 loadFonts()
 

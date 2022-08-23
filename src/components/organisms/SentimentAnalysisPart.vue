@@ -7,7 +7,10 @@
       ></SubmitForm>
       <!-- GASからのレスポンスが表示されます -->
       <v-container fluid justify="center" class="ma-5">
-        <transition-group name="anime">
+        <transition-group
+          name="anime"
+          enter-active-class="animate__animated animate__backInRight"
+        >
           <div v-for="item in cotohaResItems" v-bind:key="item">
             <NormalCard :item-info="item"></NormalCard>
           </div>
@@ -70,40 +73,7 @@
 </script>
 
 <style scoped>
-  .anime-enter-from {
-    opacity: 0;
-  }
-  .anime-enter-active {
-    transition: 3s;
-    animation: animeInUp 0.7s;
-  }
-  .anime-enter-to {
-    opacity: 1;
-  }
   .anime-move {
     transition: transform 0.8s;
-  }
-
-  .card-anime-enter-active {
-    animation: animeInUp 0.7s;
-    animation-delay: 0.1s;
-    opacity: 0;
-  }
-  .card-anime-move {
-    transition: taransform 0.8s;
-  }
-
-  @keyframes animeInUp {
-    0% {
-      transform: translateX(100px);
-      opacity: 0;
-    }
-    60% {
-      opacity: 0.3;
-    }
-    100% {
-      transform: translateX(0px);
-      opacity: 1;
-    }
   }
 </style>
