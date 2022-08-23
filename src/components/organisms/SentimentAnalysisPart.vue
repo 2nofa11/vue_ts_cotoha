@@ -6,9 +6,13 @@
         :is-loading="isLoading"
       ></SubmitForm>
       <!-- GASからのレスポンスが表示されます -->
-      <v-row justify="center" class="ma-5">
-        <PopupCard :items-props="cotohaResItems"></PopupCard>
-      </v-row>
+      <v-container fluid justify="center" class="ma-5">
+        <transition-group name="anime">
+          <div v-for="item in cotohaResItems" v-bind:key="item">
+            <NormalCard :item-info="item"></NormalCard>
+          </div>
+        </transition-group>
+      </v-container>
     </v-sheet>
   </div>
 </template>
@@ -16,7 +20,7 @@
 <script lang="ts">
   import { defineComponent } from "vue"
   import SubmitForm from "../molecules/SubmitForm.vue"
-  import PopupCard from "../molecules/PopupCard.vue"
+  import NormalCard from "@/components/atoms/NormalCard.vue"
   import { ResItem } from "../../types/resItem.type"
   import {
     colorWithSentiment,
@@ -32,7 +36,7 @@
     // TODO moleculesのロジックをここで処理したい
     components: {
       SubmitForm,
-      PopupCard,
+      NormalCard,
     },
     data() {
       return {
@@ -58,9 +62,48 @@
           description: inputText,
           color: displayInfo.color,
         }
-        this.cotohaResItems.push(resItemIns)
+        this.cotohaResItems.unshift(resItemIns)
         this.isLoading = false
       },
     },
   })
 </script>
+
+<style scoped>
+  .anime-enter-from {
+    opacity: 0;
+  }
+  .anime-enter-active {
+    transition: 3s;
+    animation: animeInUp 0.7s;
+  }
+  .anime-enter-to {
+    opacity: 1;
+  }
+  .anime-move {
+    transition: transform 0.8s;
+  }
+
+  .card-anime-enter-active {
+    animation: animeInUp 0.7s;
+    animation-delay: 0.1s;
+    opacity: 0;
+  }
+  .card-anime-move {
+    transition: taransform 0.8s;
+  }
+
+  @keyframes animeInUp {
+    0% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    60% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+</style>
