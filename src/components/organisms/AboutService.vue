@@ -1,5 +1,9 @@
 <template>
-  <div>{{ title }}</div>
+  <div>
+    <p>{{ title }}</p>
+    <div>{{ description }}</div>
+    <div>{{ roadmap }}</div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -8,7 +12,9 @@
   export default defineComponent({
     data() {
       return {
-        title: "このサービスについて",
+        title: "アプリ名",
+        description: "説明",
+        roadmap: "今後どうしていきたいか",
       }
     },
   })
