@@ -10,7 +10,6 @@ export const store = createStore({
   },
   mutations: {
     holdResult(state, targetLists) {
-      console.log(targetLists)
       state.resItems = targetLists
     },
   },
