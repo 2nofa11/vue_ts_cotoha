@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts">
+  import { mapGetters, mapMutations } from "vuex"
   import { defineComponent } from "vue"
   import SubmitForm from "../molecules/SubmitForm.vue"
   import NormalCard from "@/components/atoms/NormalCard.vue"
@@ -48,6 +49,10 @@
       }
     },
     methods: {
+      ...mapMutations(["holdResult"]),
+      backResult() {
+        console.log(this.cotohaResItems.length)
+      },
       // GASから取得した判定結果をカードに追加
       async requestToGAS(inputText: string) {
         this.isLoading = true
@@ -68,6 +73,18 @@
         this.cotohaResItems.unshift(resItemIns)
         this.isLoading = false
       },
+    },
+    computed: {
+      ...mapGetters({ storeItems: "backResItems" }),
+    },
+    mounted() {
+      if (this.cotohaResItems.length == 0) {
+        this.cotohaResItems = this.storeItems
+      }
+    },
+    beforeRouteLeave(to, from, next) {
+      this.holdResult(this.cotohaResItems)
+      next()
     },
   })
 </script>

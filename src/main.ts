@@ -5,6 +5,7 @@ import { createWebHistory } from "vue-router"
 import createRouter from "./router"
 import { loadFonts } from "./plugins/webfontloader"
 import "animate.css"
+import { store } from "@/store/Index"
 
 loadFonts()
 
@@ -13,5 +14,6 @@ app.use(vuetify)
 
 const router = createRouter(createWebHistory())
 app.use(router)
+app.use(store)
 
 app.mount("#app")

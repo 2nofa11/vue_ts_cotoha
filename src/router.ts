@@ -9,12 +9,10 @@ const routes = [
   },
   {
     path: "/vue_ts_cotoha",
+    name: "main",
     component: SentimentAnalysisPart,
   },
-  {
-    path: "/",
-    redirect: "/vue_ts_cotoha",
-  },
+  { path: "/", redirect: "/vue_ts_cotoha" },
 ]
 
 export default function (history: any) {
