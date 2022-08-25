@@ -1,9 +1,9 @@
 <template>
   <Header>
-    <v-slot>
+    <template v-slot>
       <router-link to="/about">About</router-link>
       <router-link to="/vue_ts_cotoha">Use</router-link>
-    </v-slot>
+    </template>
   </Header>
   <v-main class="grey lighten-3">
     <v-container>
