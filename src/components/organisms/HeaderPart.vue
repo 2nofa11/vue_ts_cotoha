@@ -2,6 +2,7 @@
   <v-app-bar color="white" dark>
     <!-- タイトル -->
     <v-toolbar-title>SentimenTweet</v-toolbar-title>
+    <slot></slot>
     <!-- テーブルアイコンのボタン -->
     <v-btn icon to="/">
       <v-icon>mdi-file-table-outline</v-icon>

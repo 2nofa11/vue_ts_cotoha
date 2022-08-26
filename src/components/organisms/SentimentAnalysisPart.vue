@@ -1,20 +1,29 @@
 <template>
   <div>
-    <SubmitForm
-      @parentMethod="requestToGAS"
-      :is-loading="isLoading"
-    ></SubmitForm>
-    <!-- GASからのレスポンスが表示されます -->
-    <v-row justify="center" class="ma-5">
-      <PopupCard :items-props="cotohaResItems"></PopupCard>
-    </v-row>
+    <v-sheet elevation="1" rounded="lg">
+      <SubmitForm
+        @parent-method="requestToGAS"
+        :is-loading="isLoading"
+      ></SubmitForm>
+      <!-- GASからのレスポンスが表示されます -->
+      <v-container fluid justify="center" class="ma-5">
+        <transition-group
+          name="anime"
+          enter-active-class="animate__animated animate__backInRight"
+        >
+          <div v-for="item in cotohaResItems" v-bind:key="item">
+            <NormalCard :item-info="item"></NormalCard>
+          </div>
+        </transition-group>
+      </v-container>
+    </v-sheet>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue"
   import SubmitForm from "../molecules/SubmitForm.vue"
-  import PopupCard from "../molecules/PopupCard.vue"
+  import NormalCard from "@/components/atoms/NormalCard.vue"
   import { ResItem } from "../../types/resItem.type"
   import {
     colorWithSentiment,
@@ -26,13 +35,11 @@
   const gasURL =
     "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
 
-  const placeholderText =
-    "「つぶやく」まえに、あなたの文章の感情を分析してみましょう！"
   export default defineComponent({
     // TODO moleculesのロジックをここで処理したい
     components: {
       SubmitForm,
-      PopupCard,
+      NormalCard,
     },
     data() {
       return {
@@ -58,9 +65,29 @@
           description: inputText,
           color: displayInfo.color,
         }
-        this.cotohaResItems.push(resItemIns)
+        this.cotohaResItems.unshift(resItemIns)
         this.isLoading = false
       },
     },
+    computed: {
+      storeItems() {
+        return this.$store.getters.backResItems
+      },
+    },
+    mounted() {
+      if (this.cotohaResItems.length == 0) {
+        this.cotohaResItems = this.storeItems
+      }
+    },
+    beforeRouteLeave(to, from, next) {
+      this.$store.commit("holdResult", this.cotohaResItems)
+      next()
+    },
   })
 </script>
+
+<style scoped>
+  .anime-move {
+    transition: transform 0.8s;
+  }
+</style>
