@@ -27,7 +27,7 @@
   import { ResItem } from "../../types/resItem.type"
   import {
     colorWithSentiment,
-    analyzeSentimentWtihGAS,
+    analyzeSentimentWithGAS,
   } from "./SentimentAnalysisPart.module"
   import { SentimentInfo } from "@/types/sentimentInfo.type"
   import { Sentiment } from "@/types/sentiment.type"
@@ -55,7 +55,7 @@
         let result = "" as Sentiment
         // 文章内容をもとに、感情分析結果を取得
         const url = `${gasURL}?text=${inputText}`
-        await analyzeSentimentWtihGAS(url).then((data) => (result = data.Hello))
+        await analyzeSentimentWithGAS(url).then((data) => (result = data.Hello))
         // 親コンポーネントにGASから取得できた情報を返却
         const displayInfo: SentimentInfo = colorWithSentiment(result)
 

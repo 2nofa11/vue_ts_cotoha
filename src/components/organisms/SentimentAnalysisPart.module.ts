@@ -32,7 +32,7 @@ import axios from "axios"
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const axiosJsonpAdapter = require("axios-jsonp")
 
-export async function analyzeSentimentWtihGAS(url: string): Promise<any> {
+export async function analyzeSentimentWithGAS(url: string): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(url, { adapter: axiosJsonpAdapter })

@@ -4,16 +4,16 @@ import { SentimentInfo } from "../../types/sentimentInfo.type"
 jest.mock("axios")
 import axios, { AxiosInstance } from "axios"
 import {
-  analyzeSentimentWtihGAS,
+  analyzeSentimentWithGAS,
   colorWithSentiment,
 } from "./SentimentAnalysisPart.module"
 // tslint:disable-next-line:no-any
 const myAxios: jest.Mocked<AxiosInstance> = axios as jest.Mocked<typeof axios>
 myAxios.get.mockResolvedValue({ data: { Hello: sentimentMap.Neutral } })
 
-describe("analyzeSentimentWtihGASのtest", () => {
+describe("analyzeSentimentWithGASのtest", () => {
   it("Mockを用いたテスト", async () => {
-    const res = await analyzeSentimentWtihGAS("")
+    const res = await analyzeSentimentWithGAS("")
     expect(res.Hello).toBe("Neutral")
   })
   it("Mockを使わないテスト", async () => {
@@ -21,7 +21,7 @@ describe("analyzeSentimentWtihGASのtest", () => {
       "https://script.google.com/macros/s/AKfycbwCFRzlEUmjOMIiz5NZF9Gx9uZUMfG9dL_56qzzo6GPpkF0_dSoeY4-mpTbCT3pOPCG/exec"
     const inputText = "Neutralかのテスト"
     const url = `${gasURL}?text=${inputText}`
-    await analyzeSentimentWtihGAS(url).then((res) =>
+    await analyzeSentimentWithGAS(url).then((res) =>
       expect(res.Hello).toBe("Neutral")
     )
   })
