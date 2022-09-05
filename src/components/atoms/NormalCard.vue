@@ -6,6 +6,7 @@
     <v-card-text>
       {{ itemInfo.description }}
     </v-card-text>
+    <slot></slot>
   </v-card>
 </template>
 
