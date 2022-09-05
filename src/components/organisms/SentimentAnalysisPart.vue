@@ -6,7 +6,7 @@
         :is-loading="isLoading"
       ></SubmitForm>
       <!-- GASからのレスポンスが表示されます -->
-      <v-container fluid justify="center" class="ma-5">
+      <v-container fluid justify="center" class="my-4">
         <transition-group
           name="anime"
           enter-active-class="animate__animated animate__backInRight"
