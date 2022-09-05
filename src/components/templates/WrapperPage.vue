@@ -7,7 +7,6 @@
   </Header>
   <v-main class="grey lighten-3">
     <v-container>
-      // TODO画面遷移したらコンポーネントが消えるのは修正Vuex使う？
       <router-view></router-view>
     </v-container>
   </v-main>
