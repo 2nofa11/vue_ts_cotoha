@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-1" v-bind:color="itemInfo.color">
+  <v-card class="ma-1" v-bind:color="itemInfo.color" elevation="0">
     <v-card-title primary-title>
       {{ itemInfo.title }}
     </v-card-title>
